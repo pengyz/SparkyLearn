@@ -13,6 +13,9 @@
     <Filter Include="src\graphics">
       <UniqueIdentifier>{ce7f9304-3175-4dd5-8e07-23c9293664a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{bb22b271-11f4-4ae5-ad6e-b0e26e5da835}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\window.h">

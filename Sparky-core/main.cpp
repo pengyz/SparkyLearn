@@ -17,15 +17,15 @@ int main() {
     while (!window.closed()) {
 
         window.clear();
-#if 0
+#if 1
         glBegin(GL_TRIANGLES);
         glVertex2f(-0.5f, -0.5f);
         glVertex2f(0.f, 0.5f);
         glVertex2f(0.5f, -0.5f);
         glEnd();
-#endif
-
+#else
         glDrawArrays(GL_ARRAY_BUFFER, 0, 6);
+#endif
 
         window.update();
     }
