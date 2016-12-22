@@ -2,60 +2,51 @@
 #include "src/maths/maths.h"
 #include <string>
 #include "src/utils/fileutil.h"
+#include "src/graphics/shader.h"
 #include <iostream>
 
 
 
 int main() {
-    using namespace sparky;
-    using namespace graphics;
-    using namespace maths;
+	using namespace sparky;
+	using namespace graphics;
+	using namespace maths;
 
-    Window window("sparky engine", 800, 600);
-    glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
+	Window window("sparky engine", 800, 600);
+	//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
+	GLfloat vertices[] = {
+		0, 0, 0,
+		8, 0, 0,
+		0, 3, 0,
+		0, 3, 0,
+		8, 3, 0,
+		8, 0, 0,
+	};
 
-    vec3 vec(10, 12, 22);
-    std::cout << "equals " << (vec != vec3(10, 12, 1)) << std::endl;
-    std::cout << "vec4 " << vec4(1, 2, 3, 4)* vec4(4, 32, 3, 55) << std::endl;
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(0);
 
-    mat4 position = mat4::translation(vec3(1, 2, 3));
-    position *= position;
+	Shader shader("src/shaders/basic.vert", "src/shaders/basic.frag");
+	shader.enable();
 
-    vec4 column3 = position.columns[3];
-    std::cout << column3 << std::endl;
+	shader.setUniformMat4("pr_matrix", mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f));
+	shader.setUniformMat4("ml_matrix", mat4::translation(vec3(4, 3, 0)));
+	
+	shader.setUniform2f("light_pos", vec2(4.0f, 1.5f));
+	shader.setUniform4f("colour", vec4(0.5f, 0.3f, 0.8f, 1.0f));
 
 
-    while (!window.closed()) {
+	while (!window.closed()) {
 
-        window.clear();
-
-        if (window.isKeyPressed(GLFW_KEY_A)) {
-            std::cout << "Key A Pressed " << std::endl;
-        }
-        if (window.isMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
-            std::cout << "Mouse Button Left Pressed " << std::endl;
-        }
-
-        double x, y;
-        window.getMousePosition(x, y);
-        std::cout << x << "," << y << std::endl;
-
-#if 1
-        glBegin(GL_TRIANGLES);
-        glVertex2f(-0.5f, -0.5f);
-        glVertex2f(0.f, 0.5f);
-        glVertex2f(0.5f, -0.5f);
-        glEnd();
-#else
-        glDrawArrays(GL_ARRAY_BUFFER, 0, 6);
-#endif
-
-        window.update();
-    }
+		window.clear();
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		window.update();
+	}
 
 
 }

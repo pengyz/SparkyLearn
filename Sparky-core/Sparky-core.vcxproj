@@ -38,6 +38,10 @@
     <ClInclude Include="src\maths\vec4.h" />
     <ClInclude Include="src\utils\fileutil.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaders\basic.frag" />
+    <None Include="src\shaders\basic.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6D8F5426-A4D6-4306-A477-52DA911D4365}</ProjectGuid>
     <RootNamespace>Sparkycore</RootNamespace>

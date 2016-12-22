@@ -50,4 +50,8 @@
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\utils\fileutil.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaders\basic.vert" />
+    <None Include="src\shaders\basic.frag" />
+  </ItemGroup>
 </Project>
