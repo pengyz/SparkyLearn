@@ -92,6 +92,10 @@ namespace sparky {
 
         void Window::update()
         {
+            GLenum error = glGetError();
+            if (GL_NO_ERROR != error)
+                std::cout << "OpenGL error: " << error << std::endl;
+
             glfwPollEvents();
             glfwSwapBuffers(m_Window);
         }

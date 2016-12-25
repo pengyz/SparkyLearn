@@ -17,6 +17,12 @@
     <ClCompile Include="src\maths\mat4.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\utils\fileutil.cpp" />
+    <ClCompile Include="src\graphics\buffers\buffer.cpp" />
+    <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
+    <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\renderable2d.cpp" />
+    <ClCompile Include="src\graphics\renderer2d.cpp" />
+    <ClCompile Include="src\graphics\simple2drenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -49,6 +55,12 @@
     <ClInclude Include="src\maths\mat4.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\utils\fileutil.h" />
+    <ClInclude Include="src\graphics\buffers\buffer.h" />
+    <ClInclude Include="src\graphics\buffers\indexbuffer.h" />
+    <ClInclude Include="src\graphics\buffers\vertexarray.h" />
+    <ClInclude Include="src\graphics\renderable2d.h" />
+    <ClInclude Include="src\graphics\renderer2d.h" />
+    <ClInclude Include="src\graphics\simple2drenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.vert" />
