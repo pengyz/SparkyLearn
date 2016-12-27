@@ -93,7 +93,7 @@ namespace sparky {
             glBindVertexArray(m_VAO);
             m_IBO->bind();
 
-            glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, NULL);
+            glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, NULL);
 
             m_IBO->unbind();
             glBindVertexArray(0);

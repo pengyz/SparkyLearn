@@ -15,7 +15,7 @@
 #include <vector>
 #include <time.h>
 
-#define BATH_RENDERER       1
+#define BATH_RENDERER       0
 
 #if BATH_RENDERER
 #define RendererClass       BathRenderer2D
