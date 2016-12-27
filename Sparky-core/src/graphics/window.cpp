@@ -1,6 +1,5 @@
 #include "window.h"
 #include <iostream>
-#include <functional>
 
 
 namespace sparky {

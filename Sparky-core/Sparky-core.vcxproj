@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\sprite.cpp" />
+    <ClCompile Include="src\graphics\bathrenderer2d.cpp" />
     <ClCompile Include="src\graphics\simple2drenderer.cpp" />
     <ClCompile Include="src\graphics\renderable2d.cpp" />
     <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
@@ -33,8 +35,11 @@
     <ClCompile Include="src\maths\vec4.cpp" />
     <ClCompile Include="src\utils\fileutil.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\staticsprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\sprite.h" />
+    <ClInclude Include="src\graphics\bathrenderer2d.h" />
     <ClInclude Include="src\graphics\simple2drenderer.h" />
     <ClInclude Include="src\graphics\renderable2d.h" />
     <ClInclude Include="src\graphics\buffers\indexbuffer.h" />
@@ -49,6 +54,7 @@
     <ClInclude Include="src\maths\vec4.h" />
     <ClInclude Include="src\utils\fileutil.h" />
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
+    <ClInclude Include="src\graphics\staticsprite.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.frag" />
