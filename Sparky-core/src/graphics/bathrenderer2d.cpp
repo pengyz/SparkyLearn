@@ -1,4 +1,6 @@
 #include "BathRenderer2D.h"
+#include <recdefs.h>
+
 namespace sparky {
     namespace graphics {
 
@@ -31,7 +33,7 @@ namespace sparky {
             glEnableVertexAttribArray(SHADER_VERTEX_INDEX);
             glEnableVertexAttribArray(SHADER_COLOR_INDEX);
             glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)0);
-            glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(3 * sizeof(GLfloat)));
+            glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::color)));
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             GLuint* indeices = new GLuint[RENDERER_INDICES_SIZE];
@@ -62,24 +64,30 @@ namespace sparky {
             const auto& size = renderable->getSize();
             const auto& color = renderable->getColor();
 
+            int r = int(color.x * 255);
+            int g = int(color.y * 255);
+            int b = int(color.z * 255);
+            int a = int(color.w * 255);
+            unsigned int c = a << 24 | b << 16 | g << 8 | r;
+
             //left top
             m_Buffer->vertex = position;
-            m_Buffer->color = color;
+            m_Buffer->color = c;
             m_Buffer++;
 
             //left bottom
             m_Buffer->vertex = maths::vec3(position.x, position.y + size.y, position.z);
-            m_Buffer->color = color;
+            m_Buffer->color = c;
             m_Buffer++;
 
             //left top
             m_Buffer->vertex = maths::vec3(position.x + size.x, position.y + size.y, position.z);
-            m_Buffer->color = color;
+            m_Buffer->color = c;
             m_Buffer++;
 
             //right top
             m_Buffer->vertex = maths::vec3(position.x + size.x, position.y, position.z);
-            m_Buffer->color = color;
+            m_Buffer->color = c;
             m_Buffer++;
 
 

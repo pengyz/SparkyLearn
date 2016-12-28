@@ -12,7 +12,7 @@ namespace sparky {
 
         struct VertexData {
             maths::vec3 vertex;
-            maths::vec4 color;
+            unsigned int color;
         };
 
 
@@ -25,7 +25,7 @@ namespace sparky {
             maths::vec4 m_Color;
 
 
-            
+
 
         public:
             Renderable2D(maths::vec3 position, maths::vec2 size, maths::vec4 color)
@@ -35,7 +35,7 @@ namespace sparky {
             {}
 
             virtual ~Renderable2D() {
-                
+
             }
 
             inline const maths::vec3& getPosition()const { return m_Position; }
