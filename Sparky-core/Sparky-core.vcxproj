@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\layers\layer.cpp" />
     <ClCompile Include="src\graphics\sprite.cpp" />
     <ClCompile Include="src\graphics\bathrenderer2d.cpp" />
     <ClCompile Include="src\graphics\simple2drenderer.cpp" />
@@ -36,8 +37,10 @@
     <ClCompile Include="src\utils\fileutil.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
     <ClCompile Include="src\graphics\staticsprite.cpp" />
+    <ClCompile Include="src\graphics\layers\tilelayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\layers\layer.h" />
     <ClInclude Include="src\graphics\sprite.h" />
     <ClInclude Include="src\graphics\bathrenderer2d.h" />
     <ClInclude Include="src\graphics\simple2drenderer.h" />
@@ -55,6 +58,7 @@
     <ClInclude Include="src\utils\fileutil.h" />
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\staticsprite.h" />
+    <ClInclude Include="src\graphics\layers\tilelayer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.frag" />

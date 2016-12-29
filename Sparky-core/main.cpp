@@ -14,6 +14,7 @@
 #include "src/graphics/simple2drenderer.h"
 #include <vector>
 #include <time.h>
+#include "src/graphics/layers/tilelayer.h"
 
 #define BATH_RENDERER       1
 
@@ -31,30 +32,17 @@ int main() {
     using namespace graphics;
     using namespace maths;
 
-    srand(time(NULL));
+    //srand(time(NULL));
 
     Window window("Sparky Engine", 960, 540);
 
-    Shader shader("src/shaders/basic.vert", "src/shaders/basic.frag");
-    shader.enable();
-
-    maths::mat4 ortho = mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
-    shader.setUniformMat4("pr_matrix", ortho);
-
-    shader.setUniform2f("light_pos", vec2(4.0f, 1.5f));
-    shader.setUniform4f("colour", vec4(0.5f, 0.3f, 0.8f, 1.0f));
-
-    RendererClass renderer;
-    std::vector<SpriteClass*> sprites;
+    Shader* shader = new Shader("src/shaders/basic.vert", "src/shaders/basic.frag");
+    TileLayer layer(shader);
     for (float y = 0; y < 9.0f; y++)
     {
         for (float x = 0; x < 16.0f; x++)
         {
-            sprites.push_back(new SpriteClass(x, y, 0.9, 0.9, maths::vec4(rand() % 1000 / 1000.0f, rand() % 1000 / 1000.0f, rand() % 1000 / 1000.0f, rand() % 1000 / 1000.0f)
-#if BATH_RENDERER == 0
-                , shader
-#endif
-            ));
+            layer.add(new Sprite(x, y, 0.9f, 0.9f, maths::vec4(float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f))));
         }
     }
 
@@ -63,17 +51,8 @@ int main() {
         window.clear();
         double x, y;
         window.getMousePosition(x, y);
-        shader.setUniform2f("light_pos", vec2((float)(x * 16.0f / window.getWidth()), (float)(9.0f - y * 9.0f / window.getHeight())));
-        renderer.begin();
-        for (int i = 0; i < sprites.size(); i++)
-        {
-            renderer.submit(sprites[i]);
-        }
-        renderer.end();
-        renderer.flush();
-
+        shader->setUniform2f("light_pos", vec2((float)(x * 16.0f / window.getWidth()), (float)(9.0f - y * 9.0f / window.getHeight())));
+        layer.render();
         window.update();
     }
-
-
 }
