@@ -38,5 +38,15 @@ namespace sparky {
             m_Renderer->flush();
         }
 
+        void Layer::push(const maths::mat4& matrix)
+        {
+            m_Renderer->push(matrix);
+        }
+
+        void Layer::pop()
+        {
+            m_Renderer->pop();
+        }
+
     }
 }

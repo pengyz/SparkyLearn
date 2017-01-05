@@ -70,23 +70,24 @@ namespace sparky {
             int a = int(color.w * 255);
             unsigned int c = a << 24 | b << 16 | g << 8 | r;
 
+            const auto& transformation = m_TransformationStack.back();
             //left top
-            m_Buffer->vertex = position;
+            m_Buffer->vertex = transformation * position;
             m_Buffer->color = c;
             m_Buffer++;
 
             //left bottom
-            m_Buffer->vertex = maths::vec3(position.x, position.y + size.y, position.z);
+            m_Buffer->vertex = transformation * maths::vec3(position.x, position.y + size.y, position.z);
             m_Buffer->color = c;
             m_Buffer++;
 
             //left top
-            m_Buffer->vertex = maths::vec3(position.x + size.x, position.y + size.y, position.z);
+            m_Buffer->vertex = transformation * maths::vec3(position.x + size.x, position.y + size.y, position.z);
             m_Buffer->color = c;
             m_Buffer++;
 
             //right top
-            m_Buffer->vertex = maths::vec3(position.x + size.x, position.y, position.z);
+            m_Buffer->vertex = transformation * maths::vec3(position.x + size.x, position.y, position.z);
             m_Buffer->color = c;
             m_Buffer++;
 

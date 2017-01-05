@@ -20,9 +20,16 @@ namespace sparky {
             static mat4 identity();
 
             mat4& multiply(const mat4& other);
+            vec3 multiply(const vec3& other)const;
+            vec4 multiply(const vec4& other)const;
 
             friend mat4 operator* (mat4 left, const mat4& right);
             mat4& operator*=(const mat4& other);
+
+
+            friend vec4 operator* (mat4 left, const vec4& right);
+            friend vec3 operator* (mat4 left, const vec3& right);
+
 
 
             static mat4 orthographic(float left, float right, float botton, float top, float near, float far);

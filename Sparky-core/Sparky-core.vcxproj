@@ -59,6 +59,7 @@
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\staticsprite.h" />
     <ClInclude Include="src\graphics\layers\tilelayer.h" />
+    <ClInclude Include="src\utils\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.frag" />
@@ -129,6 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib</AdditionalLibraryDirectories>

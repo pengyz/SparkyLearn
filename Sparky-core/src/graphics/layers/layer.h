@@ -21,6 +21,8 @@ namespace sparky {
             ~Layer();
             virtual void add(Renderable2D* renderable);
             virtual void render();
+            void push(const maths::mat4 &matrix);
+            void pop();
 
 
         };
