@@ -82,4 +82,7 @@
     <None Include="src\shaders\basic.vert" />
     <None Include="src\shaders\basic.frag" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="test2.jpg" />
+  </ItemGroup>
 </Project>

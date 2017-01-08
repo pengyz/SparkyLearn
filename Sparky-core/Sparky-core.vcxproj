@@ -70,6 +70,9 @@
     <None Include="src\shaders\basic.frag" />
     <None Include="src\shaders\basic.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="test2.jpg" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6D8F5426-A4D6-4306-A477-52DA911D4365}</ProjectGuid>
     <RootNamespace>Sparkycore</RootNamespace>
@@ -136,6 +139,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\FreeImage\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
+      <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\FreeImage\lib</AdditionalLibraryDirectories>

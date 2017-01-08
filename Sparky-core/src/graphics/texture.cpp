@@ -10,6 +10,12 @@ namespace sparky {
             m_TID = load();
         }
 
+        Texture::Texture(const char* filename) :
+            m_Path(filename), m_Width(0), m_Height(0)
+        {
+            m_TID = load();
+        }
+
         Texture::~Texture()
         {
 
@@ -32,9 +38,9 @@ namespace sparky {
             GLuint result;
             glGenBuffers(1, &result);
             glBindTexture(GL_TEXTURE_2D, result);
-            glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixels);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_BGR, GL_UNSIGNED_BYTE, pixels);
             glBindTexture(GL_TEXTURE_2D, 0);
 
             return result;

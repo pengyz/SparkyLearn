@@ -18,8 +18,7 @@
 #include "src/graphics/layers/tilelayer.h"
 #include "src/utils/Timer.h"
 #include "src/graphics/layers/group.h"
-
-#include <FreeImage.h>
+#include "src/graphics/texture.h"
 
 
 
@@ -29,40 +28,50 @@ using namespace graphics;
 using namespace maths;
 
 
-#define         TEST_50K_SPRITES    0
+#define         TEST_IMAGE          0
 
-int main2() {
+
+int main() {
+#if TEST_IMAGE == 0
+
+    srand((unsigned int)time(NULL));
     Window window("Sparky Engine", 960, 540);
     Shader* shader = new Shader("src/shaders/basic.vert", "src/shaders/basic.frag");
+
+
+    GLint texIDs[] = { 0,1,2,3,4,5,6,7,8,9 };
+    shader->enable();
+    shader->setUniform1iv("textures", texIDs, sizeof(texIDs));
+
     TileLayer layer(shader);
-#if TEST_50K_SPRITES
-    for (float y = 0; y < 9.0f; y += 0.1)
+
+    Texture* texObjs[] = {
+        new Texture("test.jpg"),
+        new Texture("test2.jpg")
+    };
+
+    //Ìí¼Ósprites
+    int index = 0;
+    for (float y = -9.0f; y < 9.0f; y += 10)
     {
-        for (float x = 0; x < 16.0f; x += 0.1)
+        for (float x = -16.0f; x < 16.0f; x += 20)
         {
-            layer.add(new Sprite(x, y, 0.09f, 0.09f, maths::vec4(float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f))));
+            //layer.add(new Sprite(x, y, 9.9f, 9.9f, maths::vec4(float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f))));
+            layer.add(new Sprite(x, y, 9.9f, 9.9f, texObjs[0]));
+            layer.add(new Sprite(x + 10, y, 9.9f, 9.9f, texObjs[1]));
+            index++;
         }
     }
-#else
-    mat4 transform = maths::mat4::translation(maths::vec3(5.0f, 2.0f, 0));
-    Group* group = new Group(transform);
-    group->add(new Sprite(0, 0, 6, 3, maths::vec4(1, 1, 1, 1)));
 
-    Group* button = new Group(maths::mat4::translation(maths::vec3(0.5, 0.5, 0)) * mat4::rotation(30.0f, vec3(0, 0, 1)));
-    button->add(new Sprite(0, 0, 5, 2, maths::vec4(1, 0, 1, 1)));
-    button->add(new Sprite(0.5f, 0.5f, 4, 1, maths::vec4(0.2f, 0.3f, 0.8f, 1)));
-    group->add(button);
-    layer.add(group);
+    shader->setUniformMat4("pr_matrix", mat4::orthographic(-16.0, 16.0, -9.0, 9.0, -1.0, 1.0));
 
-
-#endif
     int fpsCount = 0;
     Timer timer;
     while (!window.closed()) {
         window.clear();
         double x, y;
         window.getMousePosition(x, y);
-        shader->setUniform2f("light_pos", vec2((float)(x * 16.0f / window.getWidth()), (float)(9.0f - y * 9.0f / window.getHeight())));
+        shader->setUniform2f("light_pos", vec2((float)(x * 32.0f / window.getWidth() - 16.0f), (float)(9.0f - y * 18.0f / window.getHeight())));
         layer.render();
         window.update();
         if (timer.elapsed() < 1000) {
@@ -75,12 +84,14 @@ int main2() {
             timer.reset();
         }
     }
+    for (auto tex : texObjs)
+    {
+        delete tex;
+        tex = nullptr;
+    }
     return 0;
-}
 
-
-int main()
-{
+#else
     const char* filename = "test.jpg";
     //image format
     FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
@@ -124,4 +135,6 @@ int main()
     std::cout << "BPP: " << bitPeerPixel << std::endl;
 
     return 0;
+#endif
+
 }

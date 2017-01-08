@@ -29,6 +29,7 @@ namespace sparky {
 
         void Layer::render()
         {
+            //¸üĞÂuniform
             m_Renderer->begin();
             for (auto renderable : m_Renderables)
             {

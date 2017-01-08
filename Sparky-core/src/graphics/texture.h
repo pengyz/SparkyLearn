@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include <GL/eglew.h>
+#include <GL/glew.h>
 #include <FreeImage.h>
 
 namespace sparky {
@@ -13,12 +13,15 @@ namespace sparky {
 
         public:
             Texture(std::string& filename);
+            Texture(const char* filename);
             ~Texture();
             void bind() const;
             void unbind() const;
 
-            inline const unsigned int getWidth() { return m_Width; }
-            inline const unsigned int getHeight() { return m_Height; }
+            inline const unsigned int getWidth()const { return m_Width; }
+            inline const unsigned int getHeight()const { return m_Height; }
+            inline const GLuint getTID()const { return m_TID; }
+
 
         private:
             GLuint load();

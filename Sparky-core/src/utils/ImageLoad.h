@@ -14,8 +14,6 @@ namespace sparky {
         BYTE* bits = nullptr;
         *width = 0;
         *height = 0;
-        GLuint gl_texID;
-
         fif = FreeImage_GetFileType(path, 0);
         if (fif == FIF_UNKNOWN)
             fif = FreeImage_GetFIFFromFilename(path);

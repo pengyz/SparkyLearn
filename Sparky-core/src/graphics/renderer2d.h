@@ -7,8 +7,10 @@ namespace sparky {
         class Renderer2D {
         protected:
             std::vector<maths::mat4> m_TransformationStack;
+            maths::mat4* m_BackTransform;
             Renderer2D() {
                 m_TransformationStack.push_back(maths::mat4::identity());
+                m_BackTransform = &m_TransformationStack.back();
             }
         public:
             void push(const maths::mat4& matrix, bool bOverride = false)
@@ -21,6 +23,7 @@ namespace sparky {
                 {
                     m_TransformationStack.push_back(matrix * m_TransformationStack.back());
                 }
+                m_BackTransform = &m_TransformationStack.back();
             }
 
             void pop()
@@ -29,6 +32,7 @@ namespace sparky {
                 {
                     m_TransformationStack.pop_back();
                 }
+                m_BackTransform = &m_TransformationStack.back();
                 //TODO: Add to log!
             }
 
