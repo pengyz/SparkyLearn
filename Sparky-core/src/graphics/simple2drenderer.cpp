@@ -1,10 +1,11 @@
 #include "simple2drenderer.h"
+#include "renderable2d.h"
 
 
 namespace sparky {
     namespace graphics {
 
-        void Simple2DRenderer::submit(Renderable2D* renderable)
+        void Simple2DRenderer::submit(const Renderable2D* renderable)
         {
             m_RenderQueue.push_back(renderable);
         }

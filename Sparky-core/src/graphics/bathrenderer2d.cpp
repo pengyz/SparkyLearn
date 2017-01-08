@@ -1,5 +1,8 @@
 #include "BathRenderer2D.h"
 #include <recdefs.h>
+#include "renderable2d.h"
+
+
 
 namespace sparky {
     namespace graphics {
@@ -58,7 +61,7 @@ namespace sparky {
         }
 
 
-        void BathRenderer2D::submit(Renderable2D* renderable)
+        void BathRenderer2D::submit(const Renderable2D* renderable)
         {
             const auto& position = renderable->getPosition();
             const auto& size = renderable->getSize();

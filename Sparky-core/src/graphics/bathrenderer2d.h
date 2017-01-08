@@ -32,7 +32,7 @@ namespace sparky {
             ~BathRenderer2D();
 
             void init();
-            void submit(Renderable2D* renderable) override;
+            void submit(const Renderable2D* renderable) override;
             void flush() override;
 
             void begin() override;

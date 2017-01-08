@@ -17,6 +17,9 @@
 #include "src/graphics/simple2drenderer.h"
 #include "src/graphics/layers/tilelayer.h"
 #include "src/utils/Timer.h"
+#include "src/graphics/layers/group.h"
+
+
 
 
 using namespace sparky;
@@ -39,10 +42,15 @@ int main() {
         }
     }
 #else
-    layer.add(new Sprite(5.0f, 7.0f, 4, 2, maths::vec4(1, 1, 1, 1)));
-    layer.push(maths::mat4::translation(maths::vec3(5.0f, 7.0f, 1)));
-    layer.add(new Sprite(0.5, 0.5, 1, 1, maths::vec4(1, 0, 1, 1)));
-    //layer.pop();
+    mat4 transform = maths::mat4::translation(maths::vec3(5.0f, 2.0f, 0));
+    Group* group = new Group(transform);
+    group->add(new Sprite(0, 0, 6, 3, maths::vec4(1, 1, 1, 1)));
+
+    Group* button = new Group(maths::mat4::translation(maths::vec3(0.5, 0.5, 0)) * mat4::rotation(30.0f, vec3(0, 0, 1)));
+    button->add(new Sprite(0, 0, 5, 2, maths::vec4(1, 0, 1, 1)));
+    button->add(new Sprite(0.5f, 0.5f, 4, 1, maths::vec4(0.2f, 0.3f, 0.8f, 1)));
+    group->add(button);
+    layer.add(group);
 
 
 #endif

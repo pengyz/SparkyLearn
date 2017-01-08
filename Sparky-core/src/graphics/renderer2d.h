@@ -3,6 +3,7 @@
 
 namespace sparky {
     namespace graphics {
+
         class Renderer2D {
         protected:
             std::vector<maths::mat4> m_TransformationStack;
@@ -32,7 +33,7 @@ namespace sparky {
             }
 
 
-            virtual void submit(Renderable2D* renderable) = 0;
+            virtual void submit(const Renderable2D* renderable) = 0;
             virtual void flush() = 0;
             virtual void begin() {}
             virtual void end() {}
