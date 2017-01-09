@@ -4,7 +4,7 @@
 #include "../maths/maths.h"
 #include "renderable2d.h"
 #include "renderer2d.h"
-#include "staticsprite.h"
+#include "static_sprite.h"
 
 
 namespace sparky {

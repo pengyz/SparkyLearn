@@ -1,4 +1,4 @@
-#include "staticsprite.h"
+#include "static_sprite.h"
 
 namespace sparky {
     namespace graphics {
