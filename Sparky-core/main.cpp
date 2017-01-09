@@ -39,9 +39,7 @@ int main() {
     Shader* shader = new Shader("src/shaders/basic.vert", "src/shaders/basic.frag");
 
 
-    GLint texIDs[] = { 0,1,2,3,4,5,6,7,8,9 };
-    shader->enable();
-    shader->setUniform1iv("textures", texIDs, sizeof(texIDs));
+
 
     TileLayer layer(shader);
 
@@ -50,15 +48,19 @@ int main() {
         new Texture("test2.jpg")
     };
 
+    //we must use the same vector size with in the shader.
+    GLint texIDs[32] = { 0,1,2,3,4,5,6,7,8,9 };
+    shader->enable();
+    shader->setUniform1iv("textures", texIDs, sizeof(texIDs));
+
     //Ìí¼Ósprites
     int index = 0;
-    for (float y = -9.0f; y < 9.0f; y += 10)
+    for (float y = -9.0f; y < 9.0f; y += 5)
     {
-        for (float x = -16.0f; x < 16.0f; x += 20)
+        for (float x = -16.0f; x < 16.0f; x += 5)
         {
             //layer.add(new Sprite(x, y, 9.9f, 9.9f, maths::vec4(float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f), float(rand() % 1000 / 1000.0f))));
-            layer.add(new Sprite(x, y, 9.9f, 9.9f, texObjs[0]));
-            layer.add(new Sprite(x + 10, y, 9.9f, 9.9f, texObjs[1]));
+            layer.add(new Sprite(x, y, 4.9f, 4.9f, texObjs[rand() % 2]));
             index++;
         }
     }
