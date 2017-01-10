@@ -147,7 +147,6 @@
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\graphics\sprite.cpp" />
     <ClCompile Include="src\graphics\static_sprite.cpp" />
-    <ClCompile Include="src\graphics\static_sprite.cpp" />
     <ClCompile Include="src\graphics\texture.cpp" />
     <ClCompile Include="src\graphics\window.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
@@ -181,7 +180,6 @@
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\simple2drenderer.h" />
     <ClInclude Include="src\graphics\sprite.h" />
-    <ClInclude Include="src\graphics\static_sprite.h" />
     <ClInclude Include="src\graphics\static_sprite.h" />
     <ClInclude Include="src\graphics\texture.h" />
     <ClInclude Include="src\graphics\window.h" />
