@@ -24,7 +24,6 @@ namespace sparky {
             void push(const maths::mat4 &matrix);
             void pop();
 
-
         };
 
     }
